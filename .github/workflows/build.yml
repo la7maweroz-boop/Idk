@@ -19,6 +19,9 @@ jobs:
       - name: Add gradle.properties
         run: |
           printf "android.useAndroidX=true\norg.gradle.jvmargs=-Xmx3g\n" > project/gradle.properties
+      - name: Fix RESULT_OK
+        run: |
+          sed -i 's/ComponentActivity\.RESULT_OK/android.app.Activity.RESULT_OK/g' project/app/src/main/java/com/v0x7z/adblocker/MainActivity.kt
       - name: Build Debug APK
         working-directory: project
         run: gradle assembleDebug
