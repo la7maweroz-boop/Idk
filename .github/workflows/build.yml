@@ -16,6 +16,9 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.10.2'
+                - name: Add gradle.properties
+        run: |
+          printf "android.useAndroidX=true\norg.gradle.jvmargs=-Xmx3g\n" > project/gradle.properties
       - name: Build Debug APK
         working-directory: project
         run: gradle assembleDebug
